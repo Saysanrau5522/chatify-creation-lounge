@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Code, PlayCircle, Terminal, ChevronRight } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
@@ -33,7 +32,7 @@ function ProductCard({ image, title, price }) {
       </div>
       <div className="p-4">
         <h3 className="font-semibold text-lg mb-2">{title}</h3>
-        <p className="text-primary font-bold">${price}</p>
+        <p className="text-primary font-bold">\${price}</p>
         <button className="mt-3 bg-primary text-white px-4 py-2 rounded-lg
                           hover:bg-primary/90 transition-colors">
           Add to cart
