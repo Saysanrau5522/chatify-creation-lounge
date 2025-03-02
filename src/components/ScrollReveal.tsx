@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { cn } from "@/lib/utils";
 
-type AnimationType = 'fade-in' | 'slide-up' | 'slide-down' | 'scale-up' | 'scale-down' | 'blur';
+type AnimationType = 'fade-in' | 'slide-up' | 'slide-down' | 'scale-up' | 'scale-down' | 'blur' | 'slide-left' | 'slide-right';
 
 interface ScrollRevealProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -10,6 +10,7 @@ interface ScrollRevealProps extends React.HTMLAttributes<HTMLDivElement> {
   delay?: number;
   threshold?: number;
   once?: boolean;
+  duration?: number;
 }
 
 const ScrollReveal = ({
@@ -18,6 +19,7 @@ const ScrollReveal = ({
   delay = 0,
   threshold = 0.1,
   once = true,
+  duration = 700,
   className,
   ...props
 }: ScrollRevealProps) => {
@@ -54,8 +56,11 @@ const ScrollReveal = ({
     };
   }, [threshold, once]);
 
-  // Generate the style based on the delay prop
-  const delayStyle = delay ? { animationDelay: `${delay}ms` } : {};
+  // Generate the style based on the delay and duration props
+  const animationStyle = {
+    animationDelay: delay ? `${delay}ms` : undefined,
+    animationDuration: `${duration}ms`,
+  };
 
   return (
     <div
@@ -64,7 +69,7 @@ const ScrollReveal = ({
         isVisible ? `animate-${animation}` : 'opacity-0',
         className
       )}
-      style={delayStyle}
+      style={animationStyle}
       {...props}
     >
       {children}
